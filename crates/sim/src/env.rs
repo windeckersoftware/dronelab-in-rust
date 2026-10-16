@@ -8,6 +8,7 @@ use dronelab_core::{Control, G, MAX_ROTORS, PidControl, PidGains, RateControl, T
 use crate::airframe::Airframe;
 use crate::battery::Battery;
 use crate::dynamics::{Drone, Realism, RigidState};
+use crate::log::{FlightLog, GeoOrigin};
 use crate::randomization::Randomization;
 use crate::rng::Rng;
 use crate::sensors::{Imu, ImuSpec};
@@ -215,6 +216,9 @@ pub struct Env {
     step_count: u32,
     prev_action: [f32; MAX_ROTORS],
     prev_dist: f32,
+    /// Rotor commands of the last physics step, fraction of max thrust.
+    last_cmd: [f32; MAX_ROTORS],
+    log: Option<Box<FlightLog>>,
 }
 
 impl Env {
@@ -251,6 +255,8 @@ impl Env {
             step_count: 0,
             prev_action: [0.0; MAX_ROTORS],
             prev_dist: 0.0,
+            last_cmd: [0.0; MAX_ROTORS],
+            log: None,
         };
         env.reset(Some(seed));
         env
@@ -317,6 +323,34 @@ impl Env {
         self.step_count = 0;
         self.prev_action = [0.0; MAX_ROTORS];
         self.prev_dist = (self.target - pos).norm();
+        self.last_cmd = [0.0; MAX_ROTORS];
+        self.last_cmd[..af.vehicle.rotor_count()].fill(af.hover_fraction());
+        self.record(true);
+    }
+
+    /// Starts recording a flight log (see [`crate::log`]) from the current
+    /// state, one sample per control step, across episodes. Replaces any
+    /// log in progress.
+    pub fn start_log(&mut self, origin: GeoOrigin) {
+        self.log = Some(Box::new(FlightLog::new(self, origin)));
+        self.record(false);
+    }
+
+    /// The log being recorded, if any.
+    pub fn log(&self) -> Option<&FlightLog> {
+        self.log.as_deref()
+    }
+
+    /// Stops recording and returns the log.
+    pub fn stop_log(&mut self) -> Option<FlightLog> {
+        self.log.take().map(|l| *l)
+    }
+
+    fn record(&mut self, new_episode: bool) {
+        if let Some(mut log) = self.log.take() {
+            log.record(self, new_episode, &self.last_cmd);
+            self.log = Some(log);
+        }
     }
 
     /// Simulated time in this episode, s.
@@ -456,7 +490,9 @@ impl Env {
             // Closeness plus progress towards the target: the progress term
             // gives an immediate signal for moving the right way, which
             // matters for slow vehicles that take seconds to close in.
-            Task::Reach(_) => 1.0 - tanh(dist / cfg.pos_scale) + 10.0 * (self.prev_dist - dist) / cfg.pos_scale,
+            Task::Reach(_) => {
+                1.0 - tanh(dist / cfg.pos_scale) + 10.0 * (self.prev_dist - dist) / cfg.pos_scale
+            }
             Task::Race(_) => (self.prev_dist - dist) / cfg.pos_scale,
         } - rate_cost
             - smooth_cost;
@@ -470,6 +506,8 @@ impl Env {
         } else if self.step_count >= cfg.episode_steps() {
             info.truncated = true;
         }
+        self.last_cmd = cmd;
+        self.record(false);
         self.observe(obs);
         info
     }

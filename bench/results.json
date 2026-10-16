@@ -1,0 +1,375 @@
+{
+  "machine": {
+    "cpu": "Apple M5",
+    "cores": "10 cores (4 performance + 6 efficiency)",
+    "os": "Darwin 27.0.1",
+    "python": "3.12.8",
+    "packages": {
+      "pybullet": "3.2.7",
+      "gym-pybullet-drones": "2.2.0",
+      "dronelab": "0.1.0",
+      "stable-baselines3": "2.9.0",
+      "gymnasium": "1.4.0",
+      "numpy": "2.5.4"
+    }
+  },
+  "args": {
+    "seconds": 3.0,
+    "repeats": 3,
+    "warmup": 0.5,
+    "procs": [
+      1,
+      8,
+      10
+    ],
+    "envs": [
+      1,
+      1024,
+      8192
+    ],
+    "only": null,
+    "json": "bench/results.json"
+  },
+  "rows": [
+    {
+      "simulator": "gym-pybullet-drones",
+      "physics": "PYB",
+      "api": "HoverAviary",
+      "envs": 1,
+      "workers": "1 process",
+      "random": {
+        "env_steps_per_s": 748.7290499987672,
+        "physics_steps_per_s": 5989.832399990138,
+        "episode_ends_per_1k": 93.75463581071058
+      },
+      "hover": {
+        "env_steps_per_s": 5258.840774565097,
+        "physics_steps_per_s": 42070.72619652077,
+        "episode_ends_per_1k": 4.118546195652174
+      }
+    },
+    {
+      "simulator": "gym-pybullet-drones",
+      "physics": "PYB",
+      "api": "SB3 SubprocVecEnv",
+      "envs": 1,
+      "workers": "1 process",
+      "random": {
+        "env_steps_per_s": 741.9130457000923,
+        "physics_steps_per_s": 5935.3043656007385,
+        "episode_ends_per_1k": 93.792071802543
+      },
+      "hover": {
+        "env_steps_per_s": 3894.9450929569584,
+        "physics_steps_per_s": 31159.560743655667,
+        "episode_ends_per_1k": 4.130348088645816
+      }
+    },
+    {
+      "simulator": "gym-pybullet-drones",
+      "physics": "PYB",
+      "api": "SB3 SubprocVecEnv",
+      "envs": 8,
+      "workers": "8 processes",
+      "random": {
+        "env_steps_per_s": 1269.3929140628347,
+        "physics_steps_per_s": 10155.143312502678,
+        "episode_ends_per_1k": 69.68793828892005
+      },
+      "hover": {
+        "env_steps_per_s": 13094.581965894902,
+        "physics_steps_per_s": 104756.65572715922,
+        "episode_ends_per_1k": 4.160414677397354
+      }
+    },
+    {
+      "simulator": "gym-pybullet-drones",
+      "physics": "PYB",
+      "api": "SB3 SubprocVecEnv",
+      "envs": 10,
+      "workers": "10 processes",
+      "random": {
+        "env_steps_per_s": 1307.6545942079558,
+        "physics_steps_per_s": 10461.236753663647,
+        "episode_ends_per_1k": 77.2804054054054
+      },
+      "hover": {
+        "env_steps_per_s": 13584.476921433383,
+        "physics_steps_per_s": 108675.81537146706,
+        "episode_ends_per_1k": 4.090983472426771
+      }
+    },
+    {
+      "simulator": "gym-pybullet-drones",
+      "physics": "DYN",
+      "api": "HoverAviary",
+      "envs": 1,
+      "workers": "1 process",
+      "random": {
+        "env_steps_per_s": 575.9258176825821,
+        "physics_steps_per_s": 4607.406541460657,
+        "episode_ends_per_1k": 93.72594303310238
+      },
+      "hover": {
+        "env_steps_per_s": 1991.2868420965335,
+        "physics_steps_per_s": 15930.294736772268,
+        "episode_ends_per_1k": 4.134771190702352
+      }
+    },
+    {
+      "simulator": "gym-pybullet-drones",
+      "physics": "DYN",
+      "api": "SB3 SubprocVecEnv",
+      "envs": 1,
+      "workers": "1 process",
+      "random": {
+        "env_steps_per_s": 635.7092513819987,
+        "physics_steps_per_s": 5085.6740110559895,
+        "episode_ends_per_1k": 78.17703768624014
+      },
+      "hover": {
+        "env_steps_per_s": 1676.9355777223986,
+        "physics_steps_per_s": 13415.48462177919,
+        "episode_ends_per_1k": 4.163087292671645
+      }
+    },
+    {
+      "simulator": "gym-pybullet-drones",
+      "physics": "DYN",
+      "api": "SB3 SubprocVecEnv",
+      "envs": 8,
+      "workers": "8 processes",
+      "random": {
+        "env_steps_per_s": 1228.4927555565355,
+        "physics_steps_per_s": 9827.942044452284,
+        "episode_ends_per_1k": 74.81884057971014
+      },
+      "hover": {
+        "env_steps_per_s": 6356.019931726338,
+        "physics_steps_per_s": 50848.1594538107,
+        "episode_ends_per_1k": 4.214075010535187
+      }
+    },
+    {
+      "simulator": "gym-pybullet-drones",
+      "physics": "DYN",
+      "api": "SB3 SubprocVecEnv",
+      "envs": 10,
+      "workers": "10 processes",
+      "random": {
+        "env_steps_per_s": 1373.355754061732,
+        "physics_steps_per_s": 10986.846032493855,
+        "episode_ends_per_1k": 74.51612903225806
+      },
+      "hover": {
+        "env_steps_per_s": 6463.220675099987,
+        "physics_steps_per_s": 51705.76540079989,
+        "episode_ends_per_1k": 4.118757508151708
+      }
+    },
+    {
+      "simulator": "dronelab",
+      "physics": "ideal",
+      "api": "BatchSim",
+      "envs": 1,
+      "workers": "10 threads",
+      "random": {
+        "env_steps_per_s": 349044.9563698948,
+        "physics_steps_per_s": 2792359.6509591583,
+        "episode_ends_per_1k": 33.866608550962326
+      },
+      "hover": {
+        "env_steps_per_s": 348671.8643668635,
+        "physics_steps_per_s": 2789374.914934908,
+        "episode_ends_per_1k": 14.906400708971876
+      }
+    },
+    {
+      "simulator": "dronelab",
+      "physics": "ideal",
+      "api": "SB3 DronelabVecEnv",
+      "envs": 1,
+      "workers": "10 threads",
+      "random": {
+        "env_steps_per_s": 154661.9548902948,
+        "physics_steps_per_s": 1237295.6391223583,
+        "episode_ends_per_1k": 33.82747985275097
+      },
+      "hover": {
+        "env_steps_per_s": 155340.31174104643,
+        "physics_steps_per_s": 1242722.4939283715,
+        "episode_ends_per_1k": 14.90799573690143
+      }
+    },
+    {
+      "simulator": "dronelab",
+      "physics": "ideal",
+      "api": "BatchSim",
+      "envs": 1024,
+      "workers": "10 threads",
+      "random": {
+        "env_steps_per_s": 2762570.0156947216,
+        "physics_steps_per_s": 22100560.125557773,
+        "episode_ends_per_1k": 34.443718399451406
+      },
+      "hover": {
+        "env_steps_per_s": 2879574.411326772,
+        "physics_steps_per_s": 23036595.290614177,
+        "episode_ends_per_1k": 14.881244748418347
+      }
+    },
+    {
+      "simulator": "dronelab",
+      "physics": "ideal",
+      "api": "SB3 DronelabVecEnv",
+      "envs": 1024,
+      "workers": "10 threads",
+      "random": {
+        "env_steps_per_s": 2197636.89333809,
+        "physics_steps_per_s": 17581095.14670472,
+        "episode_ends_per_1k": 34.44450173071946
+      },
+      "hover": {
+        "env_steps_per_s": 2281812.921085316,
+        "physics_steps_per_s": 18254503.36868253,
+        "episode_ends_per_1k": 14.887755141910478
+      }
+    },
+    {
+      "simulator": "dronelab",
+      "physics": "ideal",
+      "api": "BatchSim",
+      "envs": 8192,
+      "workers": "10 threads",
+      "random": {
+        "env_steps_per_s": 3000225.983167022,
+        "physics_steps_per_s": 24001807.865336176,
+        "episode_ends_per_1k": 34.268778840869466
+      },
+      "hover": {
+        "env_steps_per_s": 3075657.119033629,
+        "physics_steps_per_s": 24605256.952269033,
+        "episode_ends_per_1k": 14.867025172073369
+      }
+    },
+    {
+      "simulator": "dronelab",
+      "physics": "ideal",
+      "api": "SB3 DronelabVecEnv",
+      "envs": 8192,
+      "workers": "10 threads",
+      "random": {
+        "env_steps_per_s": 2600612.613205545,
+        "physics_steps_per_s": 20804900.90564436,
+        "episode_ends_per_1k": 34.27554822292175
+      },
+      "hover": {
+        "env_steps_per_s": 2672696.9214995634,
+        "physics_steps_per_s": 21381575.371996507,
+        "episode_ends_per_1k": 14.881005710053516
+      }
+    },
+    {
+      "simulator": "dronelab",
+      "physics": "full",
+      "api": "BatchSim",
+      "envs": 1,
+      "workers": "10 threads",
+      "random": {
+        "env_steps_per_s": 190077.27789416612,
+        "physics_steps_per_s": 1520618.223153329,
+        "episode_ends_per_1k": 51.008881430851716
+      },
+      "hover": {
+        "env_steps_per_s": 190978.80902112633,
+        "physics_steps_per_s": 1527830.4721690107,
+        "episode_ends_per_1k": 47.964910963178326
+      }
+    },
+    {
+      "simulator": "dronelab",
+      "physics": "full",
+      "api": "SB3 DronelabVecEnv",
+      "envs": 1,
+      "workers": "10 threads",
+      "random": {
+        "env_steps_per_s": 111384.68285055557,
+        "physics_steps_per_s": 891077.4628044446,
+        "episode_ends_per_1k": 51.260342928425636
+      },
+      "hover": {
+        "env_steps_per_s": 111530.13971702964,
+        "physics_steps_per_s": 892241.1177362371,
+        "episode_ends_per_1k": 47.694138351698896
+      }
+    },
+    {
+      "simulator": "dronelab",
+      "physics": "full",
+      "api": "BatchSim",
+      "envs": 1024,
+      "workers": "10 threads",
+      "random": {
+        "env_steps_per_s": 1331958.3666560983,
+        "physics_steps_per_s": 10655666.933248786,
+        "episode_ends_per_1k": 51.75814785800137
+      },
+      "hover": {
+        "env_steps_per_s": 1266464.0823955878,
+        "physics_steps_per_s": 10131712.659164703,
+        "episode_ends_per_1k": 48.07075316548219
+      }
+    },
+    {
+      "simulator": "dronelab",
+      "physics": "full",
+      "api": "SB3 DronelabVecEnv",
+      "envs": 1024,
+      "workers": "10 threads",
+      "random": {
+        "env_steps_per_s": 1123148.6395271749,
+        "physics_steps_per_s": 8985189.116217399,
+        "episode_ends_per_1k": 51.73922929174723
+      },
+      "hover": {
+        "env_steps_per_s": 1125683.4221186587,
+        "physics_steps_per_s": 9005467.37694927,
+        "episode_ends_per_1k": 48.06733536816802
+      }
+    },
+    {
+      "simulator": "dronelab",
+      "physics": "full",
+      "api": "BatchSim",
+      "envs": 8192,
+      "workers": "10 threads",
+      "random": {
+        "env_steps_per_s": 1413367.7325857265,
+        "physics_steps_per_s": 11306941.860685812,
+        "episode_ends_per_1k": 51.90360561454312
+      },
+      "hover": {
+        "env_steps_per_s": 1316116.258402762,
+        "physics_steps_per_s": 10528930.067222096,
+        "episode_ends_per_1k": 48.13298158444103
+      }
+    },
+    {
+      "simulator": "dronelab",
+      "physics": "full",
+      "api": "SB3 DronelabVecEnv",
+      "envs": 8192,
+      "workers": "10 threads",
+      "random": {
+        "env_steps_per_s": 1148865.946484805,
+        "physics_steps_per_s": 9190927.57187844,
+        "episode_ends_per_1k": 51.917866686460805
+      },
+      "hover": {
+        "env_steps_per_s": 1167314.6499223737,
+        "physics_steps_per_s": 9338517.19937899,
+        "episode_ends_per_1k": 48.200443051784326
+      }
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 [workspace]
 resolver = "3"
-members = ["crates/core", "crates/sim", "crates/py"]
+members = ["crates/core", "crates/sim", "crates/compat", "crates/py"]
 
 [workspace.package]
 version = "0.1.0"
@@ -10,6 +10,7 @@ license = "MIT"
 [workspace.dependencies]
 dronelab-core = { path = "crates/core" }
 dronelab = { path = "crates/sim" }
+dronelab-compat = { path = "crates/compat" }
 libm = "0.2.16"
 
 [profile.release]

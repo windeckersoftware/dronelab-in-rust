@@ -8,6 +8,7 @@
 //! - The controller and mixer come from `dronelab-core`, the same `no_std`
 //!   code that runs on the flight controller.
 //! - Racing with gates, lap timing and a leaderboard ([`track`]).
+//! - Flight logs for ArduPilot and PX4 tools ([`log`]).
 //!
 //! # Observation layout
 //!
@@ -27,6 +28,7 @@ pub mod battery;
 pub mod dynamics;
 pub mod enums;
 pub mod env;
+pub mod log;
 pub mod randomization;
 pub mod rng;
 pub mod sensors;
@@ -39,6 +41,7 @@ pub use dronelab_core as core;
 pub use dynamics::Realism;
 pub use enums::DroneModel;
 pub use env::{ActionMode, Env, EnvConfig, StepInfo, Task};
+pub use log::{FlightLog, GeoOrigin, LogFormat};
 pub use randomization::Randomization;
 pub use track::{Gate, LapRecord, Leaderboard, Track};
 pub use urdf::{UrdfError, UrdfParam};

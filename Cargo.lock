@@ -46,6 +46,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "dronelab-compat"
+version = "0.1.0"
+dependencies = [
+ "dronelab",
+ "rayon",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "dronelab-core"
 version = "0.1.0"
 dependencies = [
@@ -57,6 +67,7 @@ name = "dronelab-py"
 version = "0.1.0"
 dependencies = [
  "dronelab",
+ "dronelab-compat",
  "numpy",
  "pyo3",
  "serde_json",

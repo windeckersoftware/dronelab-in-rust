@@ -10,9 +10,10 @@ use crate::sensors::{Imu, Wind};
 
 const AIR_DENSITY: f32 = 1.225;
 
-/// Which physical effects are simulated. [`Realism::IDEAL`] is close to
-/// gym-pybullet-drones' explicit `DYN` physics; [`Realism::FULL`] adds what
-/// separates simulation from real flight.
+/// Which physical effects are simulated. [`Realism::IDEAL`] is a plain
+/// rigid body with instant motors; [`Realism::FULL`] adds what separates
+/// simulation from real flight. For gym-pybullet-drones' own models, use
+/// `dronelab-compat`.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct Realism {
     /// First-order rotor spin-up/down instead of instant speed changes.

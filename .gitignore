@@ -2,3 +2,5 @@ target/
 .venv/
 __pycache__/
 *.zip
+bench/.venv-pybullet/
+upstream/
