@@ -1,0 +1,11 @@
+[package]
+name = "dronelab-core"
+description = "no_std flight code (math, mixer, PID) shared by the dronelab simulator and the flight controller"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+# Pure-Rust math functions: no_std, and bit-identical on every platform,
+# which keeps simulations reproducible across machines.
+libm.workspace = true

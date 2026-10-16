@@ -1,0 +1,18 @@
+[build-system]
+requires = ["maturin>=1.7,<2"]
+build-backend = "maturin"
+
+[project]
+name = "dronelab"
+dynamic = ["version"]
+description = "Fast, deterministic multirotor and eVTOL simulator for reinforcement learning"
+requires-python = ">=3.10"
+license = "MIT"
+dependencies = ["numpy>=1.24", "gymnasium>=1.0"]
+
+[project.optional-dependencies]
+sb3 = ["stable-baselines3>=2.3"]
+
+[tool.maturin]
+python-source = "python"
+module-name = "dronelab._native"

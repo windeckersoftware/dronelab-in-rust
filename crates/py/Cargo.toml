@@ -1,0 +1,17 @@
+[package]
+name = "dronelab-py"
+description = "Python bindings for dronelab (Gymnasium / Stable-Baselines3)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[lib]
+name = "_native"
+crate-type = ["cdylib"]
+
+[dependencies]
+dronelab.workspace = true
+numpy = "0.30.0"
+serde_json = "1"
+pyo3 = { version = "0.30.1", features = ["abi3-py310"] }

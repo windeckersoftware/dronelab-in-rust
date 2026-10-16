@@ -1,0 +1,14 @@
+[package]
+name = "dronelab"
+description = "Fast, deterministic multirotor and eVTOL simulator for reinforcement learning"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+dronelab-core.workspace = true
+libm.workspace = true
+rayon = "1.12.0"
+roxmltree = "0.21.1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
